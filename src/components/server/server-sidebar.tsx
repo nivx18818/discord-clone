@@ -1,6 +1,6 @@
 import React from "react";
 import { redirect } from "next/navigation";
-import { ChannelType, MemberRole } from "@prisma/client";
+import { ChannelType, MemberRole } from "generated/prisma/client";
 import { Hash, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react";
 
 import { currentProfile } from "@/lib/current-profile";
@@ -17,7 +17,7 @@ import { ServerMember } from "@/components/server/server-member";
 const iconMap = {
   [ChannelType.TEXT]: <Hash className="mr-2 h-4 w-4" />,
   [ChannelType.AUDIO]: <Mic className="mr-2 h-4 w-4" />,
-  [ChannelType.VIDEO]: <Video className="mr-2 h-4 w-4" />
+  [ChannelType.VIDEO]: <Video className="mr-2 h-4 w-4" />,
 };
 
 const roleIconMap = {
@@ -25,7 +25,7 @@ const roleIconMap = {
   [MemberRole.MODERATOR]: (
     <ShieldCheck className="h-4 w-4 mr-2 text-indigo-500" />
   ),
-  [MemberRole.ADMIN]: <ShieldAlert className="h-4 w-4 mr-2 text-rose-500" />
+  [MemberRole.ADMIN]: <ShieldAlert className="h-4 w-4 mr-2 text-rose-500" />,
 };
 
 export async function ServerSidebar({ serverId }: { serverId: string }) {
@@ -35,23 +35,23 @@ export async function ServerSidebar({ serverId }: { serverId: string }) {
 
   const server = await db.server.findUnique({
     where: {
-      id: serverId
+      id: serverId,
     },
     include: {
       channels: {
         orderBy: {
-          createdAt: "asc"
-        }
+          createdAt: "asc",
+        },
       },
       members: {
         include: {
-          profile: true
+          profile: true,
         },
         orderBy: {
-          role: "asc"
-        }
-      }
-    }
+          role: "asc",
+        },
+      },
+    },
   });
 
   const textChannels = server?.channels.filter(
@@ -87,8 +87,8 @@ export async function ServerSidebar({ serverId }: { serverId: string }) {
                 data: textChannels?.map((channel) => ({
                   id: channel.id,
                   name: channel.name,
-                  icon: iconMap[channel.type]
-                }))
+                  icon: iconMap[channel.type],
+                })),
               },
               {
                 label: "Voice Channels",
@@ -96,8 +96,8 @@ export async function ServerSidebar({ serverId }: { serverId: string }) {
                 data: audioChannels?.map((channel) => ({
                   id: channel.id,
                   name: channel.name,
-                  icon: iconMap[channel.type]
-                }))
+                  icon: iconMap[channel.type],
+                })),
               },
               {
                 label: "Video Channels",
@@ -105,8 +105,8 @@ export async function ServerSidebar({ serverId }: { serverId: string }) {
                 data: videoChannels?.map((channel) => ({
                   id: channel.id,
                   name: channel.name,
-                  icon: iconMap[channel.type]
-                }))
+                  icon: iconMap[channel.type],
+                })),
               },
               {
                 label: "Members",
@@ -114,9 +114,9 @@ export async function ServerSidebar({ serverId }: { serverId: string }) {
                 data: members?.map((member) => ({
                   id: member.id,
                   name: member.profile.name,
-                  icon: roleIconMap[member.role]
-                }))
-              }
+                  icon: roleIconMap[member.role],
+                })),
+              },
             ]}
           />
         </div>

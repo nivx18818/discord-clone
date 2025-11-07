@@ -9,9 +9,9 @@ import {
   Shield,
   ShieldAlert,
   ShieldCheck,
-  ShieldQuestion
+  ShieldQuestion,
 } from "lucide-react";
-import { MemberRole } from "@prisma/client";
+import { MemberRole } from "generated/prisma/client";
 import qs from "query-string";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -21,7 +21,7 @@ import {
   DialogContent,
   DialogDescription,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog";
 import {
   DropdownMenu,
@@ -32,7 +32,7 @@ import {
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuTrigger,
-  DropdownMenuSubTrigger
+  DropdownMenuSubTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { UserAvatar } from "@/components/user-avatar";
@@ -42,7 +42,7 @@ import { ServerWithMembersWithProfiles } from "@/types";
 const roleIconMap = {
   GUEST: null,
   MODERATOR: <ShieldCheck className="h-4 w-4 ml-2 text-indigo-500" />,
-  ADMIN: <ShieldAlert className="h-4 w-4 ml-2 text-rose-500" />
+  ADMIN: <ShieldAlert className="h-4 w-4 ml-2 text-rose-500" />,
 };
 
 export function MembersModal() {
@@ -59,7 +59,7 @@ export function MembersModal() {
 
       const url = qs.stringifyUrl({
         url: `/api/members/${memberId}`,
-        query: { serverId: server?.id }
+        query: { serverId: server?.id },
       });
 
       const response = await axios.delete(url);
@@ -79,7 +79,7 @@ export function MembersModal() {
 
       const url = qs.stringifyUrl({
         url: `/api/members/${memberId}`,
-        query: { serverId: server?.id }
+        query: { serverId: server?.id },
       });
 
       const response = await axios.patch(url, { role });

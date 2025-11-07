@@ -1,7 +1,7 @@
 "use client";
 
 import React, { Fragment, useRef, ElementRef } from "react";
-import { Member, Message, Profile } from "@prisma/client";
+import { Member, Message, Profile } from "generated/prisma/client";
 import { Loader2, ServerCrash } from "lucide-react";
 import { format } from "date-fns";
 
@@ -40,7 +40,7 @@ export function ChatMessages({
   socketQuery,
   paramKey,
   paramValue,
-  type
+  type,
 }: ChatMessagesProps) {
   const queryKey = `chat:${chatId}`;
   const addKey = `chat:${chatId}:messages`;
@@ -54,19 +54,19 @@ export function ChatMessages({
       queryKey,
       apiUrl,
       paramKey,
-      paramValue
+      paramValue,
     });
   useChatSocket({
     queryKey,
     addKey,
-    updateKey
+    updateKey,
   });
   useChatScroll({
     chatRef,
     bottomRef,
     loadMore: fetchNextPage,
     shouldLoadMore: !isFetchingNextPage && !!hasNextPage,
-    count: data?.pages?.[0]?.items?.length ?? 0
+    count: data?.pages?.[0]?.items?.length ?? 0,
   });
 
   if (status === "loading")
@@ -90,10 +90,7 @@ export function ChatMessages({
     );
 
   return (
-    <div
-      className="flex-1 flex flex-col py-4 overflow-y-auto"
-      ref={chatRef}
-    >
+    <div className="flex-1 flex flex-col py-4 overflow-y-auto" ref={chatRef}>
       {!hasNextPage && <div className="flex-1" />}
       {!hasNextPage && <ChatWelcome name={name} type={type} />}
       {hasNextPage && (
@@ -122,10 +119,7 @@ export function ChatMessages({
                 content={message.content}
                 fileUrl={message.fileUrl}
                 deleted={message.deleted}
-                timestamp={format(
-                  new Date(message.createdAt),
-                  DATE_FORMAT
-                )}
+                timestamp={format(new Date(message.createdAt), DATE_FORMAT)}
                 isUpdated={message.updatedAt !== message.createdAt}
                 socketQuery={socketQuery}
                 socketUrl={socketUrl}

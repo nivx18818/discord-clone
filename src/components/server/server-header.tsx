@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { MemberRole } from "@prisma/client";
+import { MemberRole } from "generated/prisma/client";
 import {
   ChevronDown,
   LogOutIcon,
@@ -9,7 +9,7 @@ import {
   Settings,
   Trash,
   UserPlus,
-  Users
+  Users,
 } from "lucide-react";
 
 import { ServerWithMembersWithProfiles } from "@/types";
@@ -18,7 +18,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useModal } from "@/hooks/use-modal-store";
 

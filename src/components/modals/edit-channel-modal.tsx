@@ -6,7 +6,7 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { ChannelType } from "@prisma/client";
+import { ChannelType } from "generated/prisma/client";
 import qs from "query-string";
 
 import {
@@ -14,7 +14,7 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog";
 import {
   Form,
@@ -22,14 +22,14 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -40,9 +40,9 @@ const formSchema = z.object({
     .string()
     .min(1, { message: "Channel name is required." })
     .refine((name) => name !== "general", {
-      message: "Channel name cannot be 'general'"
+      message: "Channel name cannot be 'general'",
     }),
-  type: z.nativeEnum(ChannelType)
+  type: z.nativeEnum(ChannelType),
 });
 
 export function EditChannelModal() {
@@ -56,8 +56,8 @@ export function EditChannelModal() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      type: channel?.type || ChannelType.TEXT
-    }
+      type: channel?.type || ChannelType.TEXT,
+    },
   });
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export function EditChannelModal() {
     try {
       const url = qs.stringifyUrl({
         url: `/api/channels/${channel?.id}`,
-        query: { serverId: server?.id }
+        query: { serverId: server?.id },
       });
 
       await axios.patch(url, values);

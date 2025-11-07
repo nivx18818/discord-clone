@@ -1,14 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Member, MemberRole, Profile } from "@prisma/client";
-import {
-  Edit,
-  FileIcon,
-  ShieldAlert,
-  ShieldCheck,
-  Trash
-} from "lucide-react";
+import { Member, MemberRole, Profile } from "generated/prisma/client";
+import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash } from "lucide-react";
 import Image from "next/image";
 import * as z from "zod";
 import axios from "axios";
@@ -20,12 +14,7 @@ import { useRouter, useParams } from "next/navigation";
 import { UserAvatar } from "@/components/user-avatar";
 import { ActionTooltip } from "@/components/action-tooltip";
 import { cn } from "@/lib/utils";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useModal } from "@/hooks/use-modal-store";
@@ -46,11 +35,11 @@ interface ChatItemProps {
 const roleIconMap = {
   GUEST: null,
   MODERATOR: <ShieldCheck className="h-4 w-4 ml-2 text-indigo-500" />,
-  ADMIN: <ShieldAlert className="h-4 w-4 ml-2 text-rose-500" />
+  ADMIN: <ShieldAlert className="h-4 w-4 ml-2 text-rose-500" />,
 };
 
 const formSchema = z.object({
-  content: z.string().min(1)
+  content: z.string().min(1),
 });
 
 export function ChatItem({
@@ -63,7 +52,7 @@ export function ChatItem({
   currentMember,
   isUpdated,
   socketUrl,
-  socketQuery
+  socketQuery,
 }: ChatItemProps) {
   const [isEditing, setIsEditing] = useState(false);
   const { onOpen } = useModal();
@@ -92,8 +81,8 @@ export function ChatItem({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      content
-    }
+      content,
+    },
   });
 
   const isLoading = form.formState.isSubmitting;
@@ -102,7 +91,7 @@ export function ChatItem({
     try {
       const url = qs.stringifyUrl({
         url: `${socketUrl}/${id}`,
-        query: socketQuery
+        query: socketQuery,
       });
 
       await axios.patch(url, values);
@@ -186,8 +175,7 @@ export function ChatItem({
             <p
               className={cn(
                 "text-sm text-zinc-600 dark:text-zinc-300",
-                deleted &&
-                  "italic to-zinc-500 dark:text-zinc-400 text-xs mt-1"
+                deleted && "italic to-zinc-500 dark:text-zinc-400 text-xs mt-1"
               )}
             >
               {content}
@@ -248,7 +236,7 @@ export function ChatItem({
               onClick={() =>
                 onOpen("deleteMessage", {
                   apiUrl: `${socketUrl}/${id}`,
-                  query: socketQuery
+                  query: socketQuery,
                 })
               }
               className="cursor-pointer ml-auto w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition"
