@@ -14,9 +14,14 @@ import { useRouter, useParams } from "next/navigation";
 import { UserAvatar } from "@/components/user-avatar";
 import { ActionTooltip } from "@/components/action-tooltip";
 import { cn } from "@/lib/utils";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+} from "@/components/shadcn/form";
+import { Input } from "@/components/shadcn/input";
+import { Button } from "@/components/shadcn/button";
 import { useModal } from "@/hooks/use-modal-store";
 
 interface ChatItemProps {

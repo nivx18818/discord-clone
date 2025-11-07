@@ -11,9 +11,9 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+  DialogTitle,
+} from "@/components/shadcn/dialog";
+import { Button } from "@/components/shadcn/button";
 import { useModal } from "@/hooks/use-modal-store";
 
 export function DeleteChannelModal() {
@@ -32,8 +32,8 @@ export function DeleteChannelModal() {
       const url = qs.stringifyUrl({
         url: `/api/channels/${channel?.id}`,
         query: {
-          serverId: server?.id
-        }
+          serverId: server?.id,
+        },
       });
 
       await axios.delete(url);

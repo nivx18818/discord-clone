@@ -10,8 +10,8 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
-  CommandList
-} from "@/components/ui/command";
+  CommandList,
+} from "@/components/shadcn/command";
 
 interface ServerSearchProps {
   data: {
@@ -48,7 +48,7 @@ export function ServerSearch({ data }: ServerSearchProps) {
 
   const onClick = ({
     id,
-    type
+    type,
   }: {
     id: string;
     type: "channel" | "member";

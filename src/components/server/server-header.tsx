@@ -19,7 +19,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/shadcn/dropdown-menu";
 import { useModal } from "@/hooks/use-modal-store";
 
 interface ServerHeaderProps {

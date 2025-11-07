@@ -8,11 +8,11 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
-  DialogTitle
-} from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+  DialogTitle,
+} from "@/components/shadcn/dialog";
+import { Label } from "@/components/shadcn/label";
+import { Input } from "@/components/shadcn/input";
+import { Button } from "@/components/shadcn/button";
 
 import { useModal } from "@/hooks/use-modal-store";
 import { useOrigin } from "@/hooks/use-origin";

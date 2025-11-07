@@ -13,24 +13,24 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
-} from "@/components/ui/dialog";
+  DialogTitle,
+} from "@/components/shadcn/dialog";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+  FormMessage,
+} from "@/components/shadcn/form";
+import { Input } from "@/components/shadcn/input";
+import { Button } from "@/components/shadcn/button";
 import { FileUpload } from "@/components/file-upload";
 import { useModal } from "@/hooks/use-modal-store";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Server name is required." }),
-  imageUrl: z.string().min(1, { message: "Server image is required." })
+  imageUrl: z.string().min(1, { message: "Server image is required." }),
 });
 
 export function CreateServerModal() {
@@ -43,8 +43,8 @@ export function CreateServerModal() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      imageUrl: ""
-    }
+      imageUrl: "",
+    },
   });
 
   const isLoading = form.formState.isSubmitting;

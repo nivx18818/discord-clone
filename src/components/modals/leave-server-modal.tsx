@@ -10,9 +10,9 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+  DialogTitle,
+} from "@/components/shadcn/dialog";
+import { Button } from "@/components/shadcn/button";
 import { useModal } from "@/hooks/use-modal-store";
 
 export function LeaveServerModal() {

@@ -6,8 +6,8 @@ import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger
-} from "@/components/ui/tooltip";
+  TooltipTrigger,
+} from "@/components/shadcn/tooltip";
 
 interface ActionTooltipProps {
   label: string;
@@ -20,7 +20,7 @@ export function ActionTooltip({
   children,
   label,
   align,
-  side
+  side,
 }: ActionTooltipProps) {
   return (
     <TooltipProvider>

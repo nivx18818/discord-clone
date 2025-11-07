@@ -6,8 +6,8 @@ import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 
 import { NavigationAction } from "@/components/navigation/navigation-action";
-import { Separator } from "@/components/ui/separator";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/shadcn/separator";
+import { ScrollArea } from "@/components/shadcn/scroll-area";
 import { NavigationItem } from "@/components/navigation/navigation-item";
 import { ModeToggle } from "@/components/mode-toggle";
 
@@ -20,10 +20,10 @@ export async function NavigationSidebar() {
     where: {
       members: {
         some: {
-          profileId: profile.id
-        }
-      }
-    }
+          profileId: profile.id,
+        },
+      },
+    },
   });
 
   return (
@@ -47,8 +47,8 @@ export async function NavigationSidebar() {
           afterSignOutUrl="/"
           appearance={{
             elements: {
-              avatarBox: "h-[48px] w-[48px]"
-            }
+              avatarBox: "h-[48px] w-[48px]",
+            },
           }}
         />
       </div>

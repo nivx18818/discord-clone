@@ -14,20 +14,20 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
-} from "@/components/ui/dialog";
+  DialogTitle,
+} from "@/components/shadcn/dialog";
 import {
   Form,
   FormControl,
   FormField,
-  FormItem
-} from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
+  FormItem,
+} from "@/components/shadcn/form";
+import { Button } from "@/components/shadcn/button";
 import { FileUpload } from "@/components/file-upload";
 import { useModal } from "@/hooks/use-modal-store";
 
 const formSchema = z.object({
-  fileUrl: z.string().min(1, { message: "Attachment is required." })
+  fileUrl: z.string().min(1, { message: "Attachment is required." }),
 });
 
 export function MessageFileModal() {
@@ -35,7 +35,7 @@ export function MessageFileModal() {
     isOpen,
     onClose,
     type,
-    data: { apiUrl, query }
+    data: { apiUrl, query },
   } = useModal();
   const router = useRouter();
 
@@ -44,8 +44,8 @@ export function MessageFileModal() {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      fileUrl: ""
-    }
+      fileUrl: "",
+    },
   });
 
   const handleClose = () => {
@@ -59,7 +59,7 @@ export function MessageFileModal() {
     try {
       const url = qs.stringifyUrl({
         url: apiUrl || "",
-        query
+        query,
       });
       await axios.post(url, { ...values, content: values.fileUrl });
 
@@ -83,10 +83,7 @@ export function MessageFileModal() {
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-8"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="space-y-8 px-6">
               <div className="flex items-center justify-center text-center">
                 <FormField

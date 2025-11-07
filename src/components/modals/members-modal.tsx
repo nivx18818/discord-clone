@@ -22,7 +22,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from "@/components/shadcn/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -33,8 +33,8 @@ import {
   DropdownMenuSubContent,
   DropdownMenuTrigger,
   DropdownMenuSubTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ScrollArea } from "@/components/ui/scroll-area";
+} from "@/components/shadcn/dropdown-menu";
+import { ScrollArea } from "@/components/shadcn/scroll-area";
 import { UserAvatar } from "@/components/user-avatar";
 import { useModal } from "@/hooks/use-modal-store";
 import { ServerWithMembersWithProfiles } from "@/types";

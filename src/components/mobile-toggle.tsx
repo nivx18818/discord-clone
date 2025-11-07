@@ -1,8 +1,8 @@
 import React from "react";
 import { Menu } from "lucide-react";
 
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/shadcn/sheet";
+import { Button } from "@/components/shadcn/button";
 import { NavigationSidebar } from "@/components/navigation/navigation-sidebar";
 import { ServerSidebar } from "@/components/server/server-sidebar";
 

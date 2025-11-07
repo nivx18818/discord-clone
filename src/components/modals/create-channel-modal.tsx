@@ -15,7 +15,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from "@/components/shadcn/dialog";
 import {
   Form,
   FormControl,
@@ -23,16 +23,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from "@/components/shadcn/form";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+} from "@/components/shadcn/select";
+import { Input } from "@/components/shadcn/input";
+import { Button } from "@/components/shadcn/button";
 import { useModal } from "@/hooks/use-modal-store";
 
 const formSchema = z.object({

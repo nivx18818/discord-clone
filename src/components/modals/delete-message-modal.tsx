@@ -10,9 +10,9 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+  DialogTitle,
+} from "@/components/shadcn/dialog";
+import { Button } from "@/components/shadcn/button";
 import { useModal } from "@/hooks/use-modal-store";
 
 export function DeleteMessageModal() {
@@ -20,7 +20,7 @@ export function DeleteMessageModal() {
     isOpen,
     onClose,
     type,
-    data: { apiUrl, query }
+    data: { apiUrl, query },
   } = useModal();
 
   const isModalOpen = isOpen && type === "deleteMessage";
@@ -33,7 +33,7 @@ export function DeleteMessageModal() {
 
       const url = qs.stringifyUrl({
         url: apiUrl || "",
-        query
+        query,
       });
 
       await axios.delete(url);
@@ -64,11 +64,7 @@ export function DeleteMessageModal() {
             <Button variant="ghost" disabled={isLoading} onClick={onClose}>
               Cancel
             </Button>
-            <Button
-              variant="primary"
-              disabled={isLoading}
-              onClick={onClick}
-            >
+            <Button variant="primary" disabled={isLoading} onClick={onClick}>
               Confirm
             </Button>
           </div>
