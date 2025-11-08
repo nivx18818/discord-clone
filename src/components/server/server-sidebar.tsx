@@ -7,9 +7,9 @@ import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 
 import { ServerHeader } from "@/components/server/server-header";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea } from "@/components/shadcn/scroll-area";
 import { ServerSearch } from "@/components/server/server-search";
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "@/components/shadcn/separator";
 import { ServerSection } from "@/components/server/server-section";
 import { ServerChannel } from "@/components/server/server-channel";
 import { ServerMember } from "@/components/server/server-member";
