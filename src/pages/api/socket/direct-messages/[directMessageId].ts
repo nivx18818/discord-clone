@@ -1,5 +1,5 @@
 import { NextApiRequest } from "next";
-import { MemberRole } from "@prisma/client";
+import { MemberRole } from "generated/prisma/client";
 
 import { NextApiResponseServerIo } from "@/types";
 import { currentProfilePages } from "@/lib/current-profile-pages";
@@ -27,13 +27,13 @@ export default async function handler(
         id: conversationId as string,
         OR: [
           { memberOne: { profileId: profile.id } },
-          { memberTwo: { profileId: profile.id } }
-        ]
+          { memberTwo: { profileId: profile.id } },
+        ],
       },
       include: {
         memberOne: { include: { profile: true } },
-        memberTwo: { include: { profile: true } }
-      }
+        memberTwo: { include: { profile: true } },
+      },
     });
 
     if (!conversation)
@@ -44,21 +44,20 @@ export default async function handler(
         ? conversation.memberOne
         : conversation.memberTwo;
 
-    if (!member)
-      return res.status(404).json({ error: "Member not found" });
+    if (!member) return res.status(404).json({ error: "Member not found" });
 
     let directMessage = await db.directMessage.findFirst({
       where: {
         id: directMessageId as string,
-        conversationId: conversationId as string
+        conversationId: conversationId as string,
       },
       include: {
         member: {
           include: {
-            profile: true
-          }
-        }
-      }
+            profile: true,
+          },
+        },
+      },
     });
 
     if (!directMessage || directMessage.deleted)
@@ -74,20 +73,20 @@ export default async function handler(
     if (req.method === "DELETE") {
       directMessage = await db.directMessage.update({
         where: {
-          id: directMessageId as string
+          id: directMessageId as string,
         },
         data: {
           fileUrl: null,
           content: "This message has been deleted.",
-          deleted: true
+          deleted: true,
         },
         include: {
           member: {
             include: {
-              profile: true
-            }
-          }
-        }
+              profile: true,
+            },
+          },
+        },
       });
     }
 
@@ -97,18 +96,18 @@ export default async function handler(
 
       directMessage = await db.directMessage.update({
         where: {
-          id: directMessageId as string
+          id: directMessageId as string,
         },
         data: {
-          content
+          content,
         },
         include: {
           member: {
             include: {
-              profile: true
-            }
-          }
-        }
+              profile: true,
+            },
+          },
+        },
       });
     }
 

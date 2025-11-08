@@ -1,5 +1,5 @@
 import { NextApiRequest } from "next";
-import { MemberRole } from "@prisma/client";
+import { MemberRole } from "generated/prisma/client";
 
 import { NextApiResponseServerIo } from "@/types";
 import { currentProfilePages } from "@/lib/current-profile-pages";
@@ -19,8 +19,7 @@ export default async function handler(
 
     if (!profile) return res.status(401).json({ error: "Unauthorized" });
 
-    if (!serverId)
-      return res.status(400).json({ error: "Server ID Missing" });
+    if (!serverId) return res.status(400).json({ error: "Server ID Missing" });
 
     if (!channelId)
       return res.status(400).json({ error: "Channel ID Missing" });
@@ -30,47 +29,44 @@ export default async function handler(
         id: serverId as string,
         members: {
           some: {
-            profileId: profile.id
-          }
-        }
+            profileId: profile.id,
+          },
+        },
       },
       include: {
-        members: true
-      }
+        members: true,
+      },
     });
 
-    if (!server)
-      return res.status(404).json({ error: "Server not found" });
+    if (!server) return res.status(404).json({ error: "Server not found" });
 
     const channel = await db.channel.findFirst({
       where: {
         id: channelId as string,
-        serverId: serverId as string
-      }
+        serverId: serverId as string,
+      },
     });
 
-    if (!channel)
-      return res.status(404).json({ error: "Channel not found" });
+    if (!channel) return res.status(404).json({ error: "Channel not found" });
 
     const member = server.members.find(
       (member) => member.profileId === profile.id
     );
 
-    if (!member)
-      return res.status(404).json({ error: "Member not found" });
+    if (!member) return res.status(404).json({ error: "Member not found" });
 
     let message = await db.message.findFirst({
       where: {
         id: messageId as string,
-        channelId: channelId as string
+        channelId: channelId as string,
       },
       include: {
         member: {
           include: {
-            profile: true
-          }
-        }
-      }
+            profile: true,
+          },
+        },
+      },
     });
 
     if (!message || message.deleted)
@@ -86,20 +82,20 @@ export default async function handler(
     if (req.method === "DELETE") {
       message = await db.message.update({
         where: {
-          id: messageId as string
+          id: messageId as string,
         },
         data: {
           fileUrl: null,
           content: "This message has been deleted.",
-          deleted: true
+          deleted: true,
         },
         include: {
           member: {
             include: {
-              profile: true
-            }
-          }
-        }
+              profile: true,
+            },
+          },
+        },
       });
     }
 
@@ -109,18 +105,18 @@ export default async function handler(
 
       message = await db.message.update({
         where: {
-          id: messageId as string
+          id: messageId as string,
         },
         data: {
-          content
+          content,
         },
         include: {
           member: {
             include: {
-              profile: true
-            }
-          }
-        }
+              profile: true,
+            },
+          },
+        },
       });
     }
 
