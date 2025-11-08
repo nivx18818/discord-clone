@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Check, Copy, RefreshCw } from "lucide-react";
 import axios from "axios";
 

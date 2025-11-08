@@ -1,11 +1,6 @@
 "use client";
 
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useState
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { io as ClientIO } from "socket.io-client";
 
 type SocketContextType = {
@@ -15,18 +10,14 @@ type SocketContextType = {
 
 const SocketContext = createContext<SocketContextType>({
   socket: null,
-  isConnected: false
+  isConnected: false,
 });
 
 export const useSocket = () => {
   return useContext(SocketContext);
 };
 
-export function SocketProvider({
-  children
-}: {
-  children: React.ReactNode;
-}) {
+export function SocketProvider({ children }: { children: React.ReactNode }) {
   const [socket, setSocket] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
 
@@ -35,7 +26,7 @@ export function SocketProvider({
       process.env.NEXT_PUBLIC_SITE_URL!,
       {
         path: "/api/socket/io",
-        addTrailingSlash: false
+        addTrailingSlash: false,
       }
     );
 

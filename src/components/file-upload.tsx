@@ -12,11 +12,7 @@ interface FileUploadProps {
   endpoint: "messageFile" | "serverImage";
 }
 
-export function FileUpload({
-  onChange,
-  value,
-  endpoint
-}: FileUploadProps) {
+export function FileUpload({ onChange, value, endpoint }: FileUploadProps) {
   const fileType = value?.split(".").pop();
 
   if (value && fileType !== "pdf") {
@@ -25,7 +21,7 @@ export function FileUpload({
         <Image fill src={value} alt="Upload" className="rounded-full" />
         <button
           onClick={() => onChange("")}
-          className="bg-rose-500 text-white p-1 rounded-full absolute top-0 right-0 shadow-sm"
+          className="bg-rose-500 text-white p-1 rounded-full absolute top-0 right-0 shadow-xs"
           type="button"
         >
           <X className="h-4 w-4" />
@@ -48,7 +44,7 @@ export function FileUpload({
         </a>
         <button
           onClick={() => onChange("")}
-          className="bg-rose-500 text-white p-1 rounded-full absolute -top-2 -right-2 shadow-sm"
+          className="bg-rose-500 text-white p-1 rounded-full absolute -top-2 -right-2 shadow-xs"
           type="button"
         >
           <X className="h-4 w-4" />

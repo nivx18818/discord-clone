@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Avatar, AvatarImage } from "@/components/shadcn/avatar";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/shadcn/utils";
 
 interface UserAvatarProps {
   src?: string;
